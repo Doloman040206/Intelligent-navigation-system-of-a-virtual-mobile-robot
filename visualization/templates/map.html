@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Навігація віртуального мобільного робота</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<style>
+html,body{height:100%;margin:0;font-family:Arial,sans-serif;color:#172033}#map{height:72vh;min-height:360px}.panel{padding:14px 18px;background:#f5f7fa}.panel h2{margin:0 0 8px;font-size:20px}.stats{display:flex;flex-wrap:wrap;gap:10px 24px}.stats span{font-size:14px}.warning{color:#9a3412;margin-top:8px}
+</style></head><body>
+<div class="panel"><h2 id="heading">Маршрут віртуального робота</h2><div class="stats" id="stats"></div><div class="warning" id="warnings"></div></div>
+<div id="map" aria-label="Інтерактивна карта маршруту"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const data = __MAP_DATA__;
+document.getElementById('heading').textContent = `${data.city}: ${data.start.name} → ${data.target.name}`;
+const km = (data.length_m/1000).toFixed(2);
+const w = data.weather;
+document.getElementById('stats').innerHTML = `<span><b>Режим:</b> ${data.mode}</span><span><b>Довжина:</b> ${km} км</span><span><b>Погода:</b> ${w.temperature_c} °C, опади ${w.precipitation_mm} мм, вітер ${w.wind_kmh} км/год</span><span><b>Оцінка умов:</b> ${data.decision.category} (${data.decision.overall_risk})</span><span><b>Джерело:</b> ${w.source}</span>`;
+document.getElementById('warnings').textContent = (data.decision.warnings || []).join(' • ');
+const map = L.map('map');
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const line = L.polyline(data.route,{color:'#2563eb',weight:6,opacity:.85}).addTo(map);
+L.marker([data.start.lat,data.start.lon]).addTo(map).bindPopup(`<b>Початок:</b> ${data.start.name}`).openPopup();
+L.marker([data.target.lat,data.target.lon]).addTo(map).bindPopup(`<b>Ціль:</b> ${data.target.name}`);
+map.fitBounds(line.getBounds(),{padding:[25,25]});
+</script></body></html>

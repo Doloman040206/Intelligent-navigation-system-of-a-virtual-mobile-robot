@@ -1,0 +1,62 @@
+{
+  "city": "Київ",
+  "selected_mode": "walk",
+  "weather": {
+    "temperature_c": 2.5,
+    "precipitation_mm": 0.0,
+    "wind_kmh": 10.6,
+    "source": "Open-Meteo API",
+    "observed_at": "2026-11-21T19:00"
+  },
+  "decision": {
+    "temperature_risk": 0.125,
+    "precipitation_risk": 0.0,
+    "wind_risk": 0.1514,
+    "overall_risk": 0.0767,
+    "category": "сприятливі",
+    "recommended_mode": "walk",
+    "selected_mode": "walk",
+    "selected_mode_preserved": true,
+    "warnings": [],
+    "decision_time_ms": 0.0085,
+    "model_weights": {
+      "temperature": 0.25,
+      "precipitation": 0.45,
+      "wind": 0.3
+    }
+  },
+  "route": {
+    "length_m": 3606.69,
+    "route_cost": 4060.05,
+    "mode": "weather_adaptive",
+    "mean_segment_risk": 0.0629,
+    "planning_time_ms": 280.8559,
+    "edge_count": 91,
+    "success": true
+  },
+  "experiment_summary": {
+    "scenario_count": 3,
+    "baseline_successful_routes": 3,
+    "adaptive_successful_routes": 3,
+    "baseline_success_rate_percent": 100.0,
+    "adaptive_success_rate_percent": 100.0,
+    "successful_routes": 3,
+    "route_success_rate_percent": 100.0,
+    "mean_baseline_route_length_m": 3606.69,
+    "mean_adaptive_route_length_m": 3608.6267,
+    "mean_baseline_modelled_risk": 0.3396,
+    "mean_adaptive_modelled_risk": 0.3385,
+    "mean_baseline_route_cost": 3606.69,
+    "mean_adaptive_route_cost": 6053.3667,
+    "mean_baseline_edge_count": 91.0,
+    "mean_adaptive_edge_count": 90.6667,
+    "mean_baseline_planning_time_ms": 195.4872,
+    "mean_adaptive_planning_time_ms": 240.8772,
+    "mean_decision_time_ms": 0.0223,
+    "city": "Київ",
+    "selected_mode": "walk",
+    "hypothesis": "Погодна адаптація може зменшувати модельовану вразливість маршруту порівняно з плануванням лише за довжиною.",
+    "note": "Тестові профілі синтетичні; Baseline — алгоритм Дейкстри за довжиною."
+  },
+  "comparison_note": "Порівнюйте контрольовані сценарії з цим live-запуском з урахуванням того, що погодні умови API змінюються з часом."
+}
